@@ -7,6 +7,15 @@
         protected $semester;
         protected $tarifUktNominal;
         
+            public function __construct($id_mahasiswa, $nama_mahasiswa, $nim, $semester, $tarifUktNominal) 
+            {
+            $this->id_mahasiswa = $id_mahasiswa;
+            $this->nama_mahasiswa = $nama_mahasiswa;
+            $this->nim = $nim;
+            $this->semester = $semester;
+            $this->tarifUktNominal = $tarifUktNominal;
+            } 
+
         abstract public function hitungTagihSemester();
         abstract public function tampilkanSpesifikasiAkademik();
     }

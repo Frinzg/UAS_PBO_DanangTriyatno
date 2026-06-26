@@ -1,53 +1,53 @@
 <?php
 
-require_once 'Pendaftaran.php';
+require_once 'Mahasiswa.php';
 
 class MahasiswaBidikMisi extends Mahasiswa
 {
-    private $;
-    private $instansiSponsor;
+    private $golonganUkt;
+    private $NamaWali;
 
     public function __construct(
-        $id_pendaftaran,
-        $nama_calon,
-        $asal_sekolah,
-        $nilai_ujian,
-        $biayaPendaftaranDasar,
-        $skIkatanDinas,
-        $instansiSponsor
+            $id_Mahasiswa,
+            $nama_mahasiswa,
+            $nim,
+            $semester,
+            $tarifUktNominal
+            $golonganUkt
+            $NamaWali
     ) {
         parent::__construct(
-            $id_pendaftaran,
-            $nama_calon,
-            $asal_sekolah,
-            $nilai_ujian,
-            $biayaPendaftaranDasar
+            $id_Mahasiswa,
+            $nama_mahasiswa,
+            $nim,
+            $semester,
+            $tarifUktNominal
         );
 
-        $this->skIkatanDinas = $skIkatanDinas;
-        $this->instansiSponsor = $instansiSponsor;
+        $this->golonganUkt = $golonganUkt;
+        $this->NamaWali = $NamaWali;
     }
 
     // Getter
-    public function getSkIkatanDinas()
+    public function getgolonganUkt()
     {
-        return $this->skIkatanDinas;
+        return $this->golonganUkt;
     }
 
-    public function getInstansiSponsor()
+    public function getNamaWali()
     {
-        return $this->instansiSponsor;
+        return $this->NamaWali;
     }
 
     // Setter
-    public function setSkIkatanDinas($skIkatanDinas)
+    public function setgolonganUkt($golonganUkt)
     {
-        $this->skIkatanDinas = $skIkatanDinas;
+        $this->golonganUkt = $golonganUkt;
     }
 
-    public function setInstansiSponsor($instansiSponsor)
+    public function setNamaWali($NamaWali)
     {
-        $this->instansiSponsor = $instansiSponsor;
+        $this->NamaWali = $NamaWali;
     }
 
     // override abstract method
