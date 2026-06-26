@@ -1,8 +1,8 @@
 <?php
 
-require_once 'Mahasiswa.php';
+require_once __DIR__ . '/Mahasiswa.php';
 
-class MahasiswaMandiri extends Mahasiswa
+class MahasiswaPrestasi extends Mahasiswa
 {
     private $namaInstansiBeasiswa;
     private $minimalIpkSyarat;
@@ -28,10 +28,6 @@ class MahasiswaMandiri extends Mahasiswa
         $this->minimalIpkSyarat = $minimalIpkSyarat;
     }
 
-    // =========================
-    // WAJIB dari Mahasiswa.php
-    // =========================
-
     public function hitungTagihSemester()
     {
         return $this->tarifUktNominal + 100000;
@@ -39,9 +35,24 @@ class MahasiswaMandiri extends Mahasiswa
 
     public function tampilkanSpesifikasiAkademik()
     {
-        return "Mahasiswa Mandiri | Instansi: " . $this->namaInstansiBeasiswa .
+        return "Mahasiswa Prestasi | Instansi: " . $this->namaInstansiBeasiswa .
                " | Minimal IPK: " . $this->minimalIpkSyarat;
     }
-}
 
+    public function getDaftarPrestasi($db)
+    {
+        $query = "SELECT * FROM mahasiswa WHERE jalur_pembayaran = 'Prestasi'";
+        $result = $db->query($query);
+
+        $data = [];
+
+        if ($result) {
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row;
+            }
+        }
+
+        return $data;
+    }
+}
 ?>

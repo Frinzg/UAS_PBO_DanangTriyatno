@@ -28,13 +28,10 @@ class MahasiswaBidikMisi extends Mahasiswa
         $this->namaWali = $namaWali;
     }
 
-    // =========================
-    // WAJIB dari Mahasiswa
-    // =========================
 
     public function hitungTagihSemester()
     {
-        // contoh: Bidik Misi dapat potongan UKT
+
         return $this->tarifUktNominal * 0.5;
     }
 
@@ -43,6 +40,22 @@ class MahasiswaBidikMisi extends Mahasiswa
         return "Mahasiswa Bidik Misi | Golongan UKT: "
             . $this->golonganUkt .
             " | Wali: " . $this->namaWali;
+    }
+    public function getBidikMisi($db)
+    {
+    $query = "SELECT * FROM tabel_pendaftaran WHERE jalur_pembayaran = 'BidikMisi'";
+    $result = $db->query($query);
+
+    $data = [];
+
+    if ($result) 
+        {
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row;
+            }
+        }
+
+    return $data;
     }
 }
 

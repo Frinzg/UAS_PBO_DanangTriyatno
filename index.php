@@ -10,21 +10,17 @@ require_once 'classes/MahasiswaPrestasi.php';
 
 $db = (new Database())->connect();
 
-/*
-    AMBIL DATA MAHASISWA (sesuaikan tabel kamu)
-*/
+
 
 $bidikmisi = new MahasiswaBidikMisi(0,'','',0,0,0,'');
 $mandiri   = new MahasiswaMandiri(0,'','',0,0,'',0);
 $prestasi  = new MahasiswaPrestasi(0,'','',0,0,'','');
 
-/*
-    QUERY (pastikan tabel kamu "mahasiswa")
-*/
-$dataBidikmisi = $db->query("SELECT * FROM mahasiswa WHERE jalur='BidikMisi'")->fetch_all(MYSQLI_ASSOC);
-$dataMandiri   = $db->query("SELECT * FROM mahasiswa WHERE jalur='Mandiri'")->fetch_all(MYSQLI_ASSOC);
-$dataPrestasi  = $db->query("SELECT * FROM mahasiswa WHERE jalur='Prestasi'")->fetch_all(MYSQLI_ASSOC);
 
+
+$dataReguler = $bidikmisi->getdaftarbidikmisi($db);
+$dataPrestasi = $prestasi->getDaftarPrestasi($db);
+$datamandiri = $mandiri->getDaftarmandiri($db);
 ?>
 
 <!DOCTYPE html>

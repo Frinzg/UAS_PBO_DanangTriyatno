@@ -35,5 +35,23 @@ class MahasiswaMandiri extends Mahasiswa
     {
         return "Mandiri";
     }
+    
+    public function getMandiri($db)
+    {
+    $query = "SELECT * FROM tabel_pendaftaran WHERE jalur_pembayaran = 'Mandiri'";
+    $result = $db->query($query);
+
+    $data = [];
+
+    if ($result) 
+        {
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row;
+            }
+        }
+
+    return $data;
+    }
+
 }
 ?>
