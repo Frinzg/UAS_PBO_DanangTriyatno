@@ -5,19 +5,19 @@ require_once 'Mahasiswa.php';
 class MahasiswaBidikMisi extends Mahasiswa
 {
     private $golonganUkt;
-    private $NamaWali;
+    private $namaWali;
 
     public function __construct(
-            $id_Mahasiswa,
-            $nama_mahasiswa,
-            $nim,
-            $semester,
-            $tarifUktNominal
-            $golonganUkt
-            $NamaWali
+        $id_mahasiswa,
+        $nama_mahasiswa,
+        $nim,
+        $semester,
+        $tarifUktNominal,
+        $golonganUkt,
+        $namaWali
     ) {
         parent::__construct(
-            $id_Mahasiswa,
+            $id_mahasiswa,
             $nama_mahasiswa,
             $nim,
             $semester,
@@ -25,56 +25,24 @@ class MahasiswaBidikMisi extends Mahasiswa
         );
 
         $this->golonganUkt = $golonganUkt;
-        $this->NamaWali = $NamaWali;
+        $this->namaWali = $namaWali;
     }
 
-    // Getter
-    public function getgolonganUkt()
+    // =========================
+    // WAJIB dari Mahasiswa
+    // =========================
+
+    public function hitungTagihSemester()
     {
-        return $this->golonganUkt;
+        // contoh: Bidik Misi dapat potongan UKT
+        return $this->tarifUktNominal * 0.5;
     }
 
-    public function getNamaWali()
+    public function tampilkanSpesifikasiAkademik()
     {
-        return $this->NamaWali;
-    }
-
-    // Setter
-    public function setgolonganUkt($golonganUkt)
-    {
-        $this->golonganUkt = $golonganUkt;
-    }
-
-    public function setNamaWali($NamaWali)
-    {
-        $this->NamaWali = $NamaWali;
-    }
-
-    // override abstract method
-    public function hitungTotalBiaya()
-    {
-        return round($this->biayaPendaftaranDasar * 1.25);
-    }
-
-    public function tampilkanInfoJalur()
-    {
-        return "Kedinasan | SK: {$this->skIkatanDinas} | Instansi: {$this->instansiSponsor}";
-    }
-
-    public function getDaftarKedinasan($db)
-    {
-        $query = "SELECT * FROM tabel_pendaftaran WHERE jalur_pendaftaran = 'Kedinasan'";
-        $result = $db->query($query);
-
-        $data = [];
-
-        if ($result) {
-            while ($row = $result->fetch_assoc()) {
-                $data[] = $row;
-            }
-        }
-
-        return $data;
+        return "Mahasiswa Bidik Misi | Golongan UKT: "
+            . $this->golonganUkt .
+            " | Wali: " . $this->namaWali;
     }
 }
 

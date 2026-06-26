@@ -26,12 +26,12 @@ class MahasiswaMandiri extends Mahasiswa
         $this->danaSakuSubsidi = $danaSakuSubsidi;
     }
 
-    public function hitungTotalBiaya()
+    public function hitungTagihSemester()
     {
-        return $this->tarifUktNominal;
+        return $this->tarifUktNominal + 100000;
     }
 
-    public function tampilkanInfoJalur()
+    public function tampilkanSpesifikasiAkademik()
     {
         return "Mandiri";
     }

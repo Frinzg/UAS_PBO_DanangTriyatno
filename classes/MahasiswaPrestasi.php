@@ -1,77 +1,46 @@
 <?php
 
-require_once 'Pendaftaran.php';
+require_once 'Mahasiswa.php';
 
-class PendaftaranKedinasan extends Pendaftaran
+class MahasiswaMandiri extends Mahasiswa
 {
-    private $skIkatanDinas;
-    private $instansiSponsor;
+    private $namaInstansiBeasiswa;
+    private $minimalIpkSyarat;
 
     public function __construct(
-        $id_pendaftaran,
-        $nama_calon,
-        $asal_sekolah,
-        $nilai_ujian,
-        $biayaPendaftaranDasar,
-        $skIkatanDinas,
-        $instansiSponsor
+        $id_mahasiswa,
+        $nama_mahasiswa,
+        $nim,
+        $semester,
+        $tarifUktNominal,
+        $namaInstansiBeasiswa,
+        $minimalIpkSyarat
     ) {
         parent::__construct(
-            $id_pendaftaran,
-            $nama_calon,
-            $asal_sekolah,
-            $nilai_ujian,
-            $biayaPendaftaranDasar
+            $id_mahasiswa,
+            $nama_mahasiswa,
+            $nim,
+            $semester,
+            $tarifUktNominal
         );
 
-        $this->skIkatanDinas = $skIkatanDinas;
-        $this->instansiSponsor = $instansiSponsor;
+        $this->namaInstansiBeasiswa = $namaInstansiBeasiswa;
+        $this->minimalIpkSyarat = $minimalIpkSyarat;
     }
 
-    public function getSkIkatanDinas()
+    // =========================
+    // WAJIB dari Mahasiswa.php
+    // =========================
+
+    public function hitungTagihSemester()
     {
-        return $this->skIkatanDinas;
+        return $this->tarifUktNominal + 100000;
     }
 
-    public function getInstansiSponsor()
+    public function tampilkanSpesifikasiAkademik()
     {
-        return $this->instansiSponsor;
-    }
-
-    public function setSkIkatanDinas($skIkatanDinas)
-    {
-        $this->skIkatanDinas = $skIkatanDinas;
-    }
-
-    public function setInstansiSponsor($instansiSponsor)
-    {
-        $this->instansiSponsor = $instansiSponsor;
-    }
-
-    public function hitungTotalBiaya()
-    {
-        return round($this->biayaPendaftaranDasar * 1.25);
-    }
-
-    public function tampilkanInfoJalur()
-    {
-        return "Kedinasan | SK: {$this->skIkatanDinas} | Instansi: {$this->instansiSponsor}";
-    }
-
-    public function getDaftarKedinasan($db)
-    {
-        $query = "SELECT * FROM tabel_pendaftaran WHERE jalur_pendaftaran = 'Kedinasan'";
-        $result = $db->query($query);
-
-        $data = [];
-
-        if ($result) {
-            while ($row = $result->fetch_assoc()) {
-                $data[] = $row;
-            }
-        }
-
-        return $data;
+        return "Mahasiswa Mandiri | Instansi: " . $this->namaInstansiBeasiswa .
+               " | Minimal IPK: " . $this->minimalIpkSyarat;
     }
 }
 
