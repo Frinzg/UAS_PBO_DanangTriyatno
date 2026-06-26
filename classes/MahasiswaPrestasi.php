@@ -39,7 +39,7 @@ class MahasiswaPrestasi extends Mahasiswa
                " | Minimal IPK: " . $this->minimalIpkSyarat;
     }
 
-    public function getDaftarPrestasi($db)
+    public function getPrestasi($db)
     {
         $query = "SELECT * FROM mahasiswa WHERE jalur_pembayaran = 'Prestasi'";
         $result = $db->query($query);

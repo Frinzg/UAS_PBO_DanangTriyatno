@@ -18,9 +18,9 @@ $prestasi  = new MahasiswaPrestasi(0,'','',0,0,'','');
 
 
 
-$dataReguler = $bidikmisi->getdaftarbidikmisi($db);
-$dataPrestasi = $prestasi->getDaftarPrestasi($db);
-$datamandiri = $mandiri->getDaftarmandiri($db);
+$dataReguler = $bidikmisi->getBidikMisi($db);
+$dataPrestasi = $prestasi->getPrestasi($db);
+$datamandiri = $mandiri->getMandiri($db);
 ?>
 
 <!DOCTYPE html>
